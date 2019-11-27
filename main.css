@@ -12,3 +12,80 @@ html {
 .hidden {
   display: none;
 }
+
+h1 {
+  text-align: center;
+  padding: 25px 10px;
+  margin-top: 50px;
+}
+
+form {
+  margin: 0 auto;
+  padding: 10px;
+  width: 95%;
+  max-width: 768px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+button {
+  display: block;
+  margin: 25px auto;
+  padding: 10px;
+  
+}
+
+.opener {
+  text-align: center;
+  padding: 20px 0;
+}
+
+nav {
+  width: 100%;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto
+}
+
+#js-results {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home {
+  margin: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 5em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1.5em; 
+  }
+
+  button {
+    font-size: 1.5em;
+    margin-top: 40px;
+  }
+
+  .home {
+    font-size: 1.25em;
+  }
+
+  form {
+    padding: 25px;
+  }
+}
