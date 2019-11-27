@@ -50,7 +50,7 @@ nav {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto
 }
 
@@ -63,29 +63,47 @@ nav {
   margin: 20px;
 }
 
+
+fieldset {
+  border: none;
+  text-align: center;
+}
+
+input {
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
 @media screen and (min-width: 768px) {
   h1 {
-    font-size: 5em;
+    font-size: 3.5em;
   }
 
   h2 {
     font-size: 2em;
   }
 
-  p {
+  p, button, .home, input, label {
     font-size: 1.5em; 
   }
 
   button {
-    font-size: 1.5em;
+    
     margin-top: 40px;
   }
 
-  .home {
-    font-size: 1.25em;
-  }
 
   form {
     padding: 25px;
+  }
+
+  input {
+    margin: 0 auto 20px auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  h1 {
+    font-size: 5em;
   }
 }
