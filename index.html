@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Best Local Brews</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <nav>
+    <a>Best Local Brews</a>
+  </nav>
+  <header>
+    <h1>Best Local Brews</h1>
+  </header>
+  <main>
+    <form>
+      <h2>Would you like an easier way to find the best breweries in an area?</h2>
+      <p>Best Local Brews is designed to help find the best local breweries to visit, with a focus on quality.</p>
+      <p>Simply enter your location and a search radius up to 50 km or 31 mi, and the Best Local Brews app will find breweries in that area and rank them using their average beer score across their portfolio of every beer they've had rated on RateBeer.com.</p>
+      <p>RateBeer.com has been aggregating beer reviews from thousands of beer enthusiasts since 2000, and provides Best Local Brews a reliable benchmark of the quality and capability of each brewery it finds for you.</p>
+      <p>Our results let you quickly reference each brewery's location, hours of operation, RateBeer.com average score and portfolio of reviews, Google reviews, and directions to get there.</p>
+      <input type="submit" value="Get Started">
+    </form>
+    <section class="js-results hidden">
+      <iframe class="js-map"></iframe>
+      <ul class="js-breweryList">
+
+      </ul>
+      <button>Try Another Search?</button>
+    </section>
+  </main>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="index.js"></script>
+</body>
+</html>
