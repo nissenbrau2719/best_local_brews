@@ -1,6 +1,7 @@
 let locationArr;
 let searchLocation;
 let searchRadius;
+let latLng;
 const searchForm = 
 `<fieldset>
   <legend><h2>Let's find the best breweries in your area!</h2></legend>
@@ -18,9 +19,7 @@ function findBreweries() {
 }
 
 function getMap() {
-  $('#js-results').prepend(`<iframe
-  width="1000"
-  height="700"
+  $('#mapContainer').html(`<iframe
   frameborder="0" style="border:0"
   src="https://www.google.com/maps/embed/v1/search?key=${gKey}&q=breweries+near+${searchLocation}" allowfullscreen>
   </iframe>`)
@@ -28,6 +27,19 @@ $('form, header').addClass('hidden');
 $('#js-results').removeClass('hidden');
 }
 
+function getGeoLocation() {
+  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchLocation}&key=${gKey}`)
+    .then(response => {
+      if(response.ok) {
+        return response.json()
+      }
+      throw new Error(response.statusText);
+      })
+    .then(responseJson => latLng = responseJson.results[0].geometry.location)
+    .then(console.log(latLng))
+    .then(findBreweries())
+    .catch(error => alert(`Something went wrong: ${error.message}`));
+}
 
 function getSearchParams() {
   $('form').on('click', '#js-findBreweries', function(event) {
@@ -41,7 +53,8 @@ function getSearchParams() {
       locationArr = $('#location').val().split(" ");
       searchLocation = locationArr.join("+");
       searchRadius = $('#searchRadius').val();
-      getMap()
+      getGeoLocation();
+      // getMap();
       findBreweries();
     }
   });  
