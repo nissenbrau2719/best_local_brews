@@ -22,7 +22,7 @@ function getMap() {
   width="1000"
   height="700"
   frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/search?key=AIzaSyAXNQdYbdFDBIn-VOTayp_jWh2M0x7Zlj4&q=breweries+near+${searchLocation}" allowfullscreen>
+  src="https://www.google.com/maps/embed/v1/search?key=${gKey}&q=breweries+near+${searchLocation}" allowfullscreen>
   </iframe>`)
 $('form, header').addClass('hidden');
 $('#js-results').removeClass('hidden');
