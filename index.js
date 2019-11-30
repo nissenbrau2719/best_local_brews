@@ -1,7 +1,10 @@
-let locationArr;
+
 let searchLocation;
 let searchRadius;
-let latLng;
+// let lat;
+// let long;
+// let coord = {};
+
 const searchForm = 
 `<fieldset>
   <legend><h2>Let's find the best breweries in your area!</h2></legend>
@@ -12,10 +15,21 @@ const searchForm =
   <button type="submit" id="js-findBreweries">Find Breweries</button>
 </fieldset>`;
 
-function findBreweries() {
-  console.log('search ready');
-  
-
+function findBreweries(latitude, longitude) {
+  // let coord = {
+  //   "lat": latitude,
+  //   "long": longitude
+  // };
+  // console.log(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=breweries&location=${latitude},${longitude}&radius=${searchRadius}&key=${gKey}`);
+  fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=breweries&location=${latitude},${longitude}&radius=${searchRadius}&key=${gKey}`)
+    .then(response => {
+      if(response.ok) {
+        return response.json()
+      }
+      throw new Error(response.statusText);
+    })
+    .then(responseJson => console.log(responseJson))
+    .catch(error => alert(`Something went wrong: ${error.message}`));
 }
 
 function getMap() {
@@ -28,16 +42,21 @@ $('#js-results').removeClass('hidden');
 }
 
 function getGeoLocation() {
-  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchLocation}&key=${gKey}`)
+  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchLocation}&key=${gKey}`, )
     .then(response => {
       if(response.ok) {
         return response.json()
       }
-      throw new Error(response.statusText);
+      throw new Error(response.statusText)
       })
-    .then(responseJson => latLng = responseJson.results[0].geometry.location)
-    .then(console.log(latLng))
-    .then(findBreweries())
+    .then(responseJson => {
+      findBreweries(responseJson.results[0].geometry.location.lat, responseJson.results[0].geometry.location.lng)
+      // coord = responseJson.results[0].geometry.location
+      // lat =  responseJson.results[0].geometry.location.lat;
+      // long = responseJson.results[0].geometry.location.lng;
+    })
+    
+    // .then(findBreweries())
     .catch(error => alert(`Something went wrong: ${error.message}`));
 }
 
@@ -50,12 +69,11 @@ function getSearchParams() {
     } else if($('#searchRadius').val() < 1 || $('#searchRadius').val() > 31 ) {
       alert("Please enter a search radius between 1 and 31");
     } else {
-      locationArr = $('#location').val().split(" ");
+      let locationArr = $('#location').val().split(" ");
       searchLocation = locationArr.join("+");
-      searchRadius = $('#searchRadius').val();
+      searchRadius = $('#searchRadius').val() * 1609.344;
       getGeoLocation();
       // getMap();
-      findBreweries();
     }
   });  
 }
